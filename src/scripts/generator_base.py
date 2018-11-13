@@ -69,10 +69,7 @@ class Generator:
     def create_declarations_string(self, declarations_dictionary):
         declaration_string = ""
         for key, value in declarations_dictionary.items():  # For E.g.: a0 = 38473837;
-             if isinstance (value, str): # Quote string values
-                 declaration_string += "%s = '%s';\n" % (str(key), str(value))
-             else:
-                 declaration_string += "%s = %d;\n" % (str(key), value)
+             declaration_string += "%s = %s;\n" % (str(key), str(value))
         return declaration_string
 
     # Create a dictionary from the from the given value(s)

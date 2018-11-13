@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import os
 from constants import _constants
+from colors import _bcolors
 
 def write_file(settings, content):
     file_count = 1
@@ -22,3 +23,7 @@ def write_file(settings, content):
 
 def unsigned32(signed):
     return signed % 0x100000000
+
+class Messages:
+    generating = "%sGenerating tests%s" % (_bcolors.okblue, _bcolors.endc)
+    done = "%sDone%s" %(_bcolors.okblue, _bcolors.endc)
