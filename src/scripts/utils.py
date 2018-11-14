@@ -19,3 +19,6 @@ def write_file(settings, content):
                 if not test_case_count % settings.test_cases_in_a_file:
                     break
         file_count += 1
+
+def unsigned32(signed):
+    return signed % 0x100000000
