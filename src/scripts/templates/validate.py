@@ -12,3 +12,5 @@ function validate_numeric(test_value, expected_result, false_results) {
     }
 }
 '''
+
+validate_numeric_header = '''validate_numeric({EXPRESSION}, {EXPECTED_RESULT}, {FALSE_VALUES});'''
