@@ -24,5 +24,7 @@ class _constants:
     min = - 1 * max             # The min value of random number (See also Number.MIN_SAFE_INTEGER)
     bitmax = (1 << 31) - 1      # The max value of random number for bitwise operations
     bitmin = - bitmax - 1       # The min value of random number for bitwise operations
+    uint32max = (1 << 32) - 1   # The max value of random number for unsigned right shift (See also unsigned int 32)
+    uint32min = 0               # The min value of random number for unsigned right shift (See also unsigned int 32)
     bitmax_exposant = 31        # Maximum number for safely shifting an integer in python to
                                 # be precise for JS 32 bit numbers
