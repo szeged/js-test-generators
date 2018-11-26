@@ -36,6 +36,8 @@ def run_tests(options):
     test_count = 0 # The count of tests run
     fail_count = 0 # The count of failed tests
     pass_count = 0 # The count of passed tests
+    test_folder = os.path.abspath(options.test_folder) # The absolute path of test folder
+    engine_location = os.path.abspath(options.engine_location) # The absolute path of engine location
     os.chdir(options.test_folder)
     test_files = glob.glob("*.js") # Files to test
 
@@ -47,8 +49,8 @@ def run_tests(options):
     debug("%s\nTest\t\t\tExit code\n%s" % (_bcolors.okblue, _bcolors.endc), options)
 
     for filename in test_files:
-        test_file = os.path.join(options.test_folder, filename)
-        p = subprocess.Popen([options.engine_location, test_file], stderr = open(os.devnull, 'w'))
+        test_file = os.path.join(test_folder, filename)
+        p = subprocess.Popen([engine_location, test_file], stderr = open(os.devnull, 'w'))
         p.communicate()
         test_count += 1
         if (not p.returncode):
