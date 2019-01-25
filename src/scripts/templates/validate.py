@@ -14,3 +14,16 @@ function validate_numeric(test_value, expected_result, false_results) {
 '''
 
 validate_numeric_header = '''validate_numeric({EXPRESSION}, {EXPECTED_RESULT}, {FALSE_VALUES});'''
+
+test_function = '''
+function test_function() {
+    return true;
+}
+'''
+
+test_function2 = '''
+function test_function2() {
+    ++c;
+    return test_function2;
+}
+'''
