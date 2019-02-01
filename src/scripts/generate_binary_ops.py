@@ -138,24 +138,27 @@ class GenSequence(Generator):
 
     # Multiplication
     def mul(self, left_value, right_value):
-        result = left_value * right_value
-        if result < _constants.min: # Minimum / maximum number to safely multiply operand 1
-            right_value = _constants.min / left_value
-        elif result > _constants.max:
-            right_value = _constants.max / left_value
-        right_value = int(right_value) # Rounding because it might not be an integer
+        if left_value != 0:
+            if left_value < 0:
+                start = math.ceil(_constants.max / float(left_value))
+                end = math.floor(_constants.min / float(left_value))
+                right_value = random.randint(start, end)
+            if left_value > 0:
+                start = math.ceil(_constants.min / float(left_value))
+                end = math.floor(_constants.max / float(left_value))
+                right_value = random.randint(start, end)
+
         result = left_value * right_value
         return self.create_operation_result_object('*', right_value, result)
 
     # Division (floor division)
     def div(self, left_value, right_value):
-        if right_value == 0: # To avoid division by zero
-            if (random.randint(0, 1)):
-                right_value = random.randint(1, _constants.max)
-            else:
-                right_value = random.randint(_constants.min, - 1)
-        result = left_value / right_value
-        result = int(result) # Rounding because it might not be an integer
+        right_value = random.randint(_constants.min, _constants.max)
+        if right_value == 0:
+            right_value = random.randint(1, _constants.max)
+        result = int(math.floor(left_value / right_value))
+        if result < 0:
+            result +=  1
         return self.create_operation_result_object('/', right_value, result)
 
     # Modulus
