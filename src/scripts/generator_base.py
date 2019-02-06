@@ -60,6 +60,9 @@ class Generator:
             false_values.append(self.generate_false_value(expected_value, min_max))
         return false_values
 
+    def create_false_boolean_string(self, expected_value):
+        return "false" if expected_value == "true" else "true"
+
     # Stringify an array of false values
     def create_false_numbers_array_string(self, false_values_count):
         return ('[%s]'% ', '.join([self.FALSE_RESULT_VAR_NAME.format(NUMBER = i) for i in range(1,
