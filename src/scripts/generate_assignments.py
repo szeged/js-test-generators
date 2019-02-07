@@ -28,10 +28,9 @@ sys.path.append(path)
 import validate # Function
 from constants import _constants # Constant values
 from parse_args import parse_args # Argument parser
-from util import unsigned32
+from utils import unsigned32
 from generator_base import Generator
 from generate_binary_ops import GenSequence
-from utils import _write_file
 
 # Class for expressions
 class GenerateAssignments(GenSequence):
@@ -53,8 +52,8 @@ class GenerateAssignments(GenSequence):
     # Arithmetic calculations not included in base class
 
     # Assignment
-    def assign(self, op1, op2):
-        return {'oper': '=', 'op2': op2, 'sum': op2}
+    def assign(self, left_value, right_value):
+        return {'oper': '=', 'right_value': right_value, 'result': right_value}
 
     # Converting expression, expected value, false value in a function call to string format
     def string_creator(self, min_max):
@@ -68,8 +67,8 @@ class GenerateAssignments(GenSequence):
             "" if (result["oper"] == "=") else "=", self.TEST_VALUE_VAR_NAME.format(NUMBER = (i + 2))))
             if result["oper"] == "/":
                 calculation += "%s |= 0; " % (self.TEST_VALUE_VAR_NAME.format(NUMBER = 1))
-            self.operands[i + 1] = result["op2"]
-            last = result["sum"]
+            self.operands[i + 1] = result["right_value"]
+            last = result["result"]
         return self.create_test_case(expression, last, calculation, min_max)
 
 def main():
