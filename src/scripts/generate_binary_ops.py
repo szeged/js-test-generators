@@ -32,6 +32,7 @@ from parse_args import parse_args # Argument parser
 from utils import unsigned32 # Number to unsigned int 32 bit
 from generator_base import Generator # Base class
 from utils import write_file # File writer
+from utils import Messages
 
 # Class for expressions
 class GenSequence(Generator):
@@ -302,6 +303,7 @@ class GenSequence(Generator):
 
     # Generator
     def generate_binary_ops(self, generated_filename):
+        self.debug("%s\n" % (Messages.generating), self.options)
         random.seed(self.options.seed)
         self.needed_calculation_types()
         gen_settings = settings.file_write_settings(generated_filename, self.options.output, validate.validate_numeric,
@@ -314,6 +316,7 @@ class GenSequence(Generator):
             self.test_case += self.string_creator(self.set_min_max(calc))
             self.append_test_case()
         write_file(gen_settings, self.file_output)
+        self.debug("%s\n" % (Messages.done), self.options)
 
 def main():
     gs = GenSequence(parse_args(GenSequence._InnerValues.binary_operators)) # Declaring the generator
