@@ -165,13 +165,13 @@ class Function_Call_Generator(Generator):
     # Generate tests for function call
     def generate(self, options):
         random.seed(options.seed)
-        self.debug(Messages.GENERATING, options)
+        self.debug(Messages.generating, options)
         for op in options.test_cases:
             for i in range(options.test_count):
                 self.specify_test_and_expected_value(op)
                 self.create_test_case_string(op)
         write_file(self.configure_settings(options), self.file_output)
-        self.debug(Messages.DONE, options)
+        self.debug(Messages.done, options)
 
 Test_Generator = Function_Call_Generator()
 Test_Generator.generate(parse_args(Function_Call_Generator._InnerValues.test_cases))
