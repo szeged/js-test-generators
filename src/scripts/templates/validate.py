@@ -15,6 +15,17 @@ function validate_numeric(test_value, expected_result, false_results) {
 
 validate_numeric_header = '''validate_numeric({EXPRESSION}, {EXPECTED_RESULT}, {FALSE_VALUES});'''
 
+validate_boolean = '''
+function validate_boolean(test_value, expected_result, false_result) {
+    assert(test_value === expected_result);
+    assert(test_value.toString() === expected_result.toString());
+    assert(test_value !== false_result);
+    assert(test_value.toString() !== false_result.toString());
+}
+'''
+
+validate_boolean_header = '''validate_boolean({EXPRESSION}, {EXPECTED_RESULT}, {FALSE_VALUES});'''
+
 test_function = '''
 function test_function() {
     return true;
